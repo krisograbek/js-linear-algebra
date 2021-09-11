@@ -1,4 +1,4 @@
-import { create, all, matrix } from "mathjs";
+import { create, all } from "mathjs";
 import React from "react";
 import { useState } from "react";
 
@@ -6,26 +6,17 @@ const config = {}
 const math = create(all, config)
 
 function Panel() {
-  const expression = "3+5*6-2/4"
+  // const expression = "3+5*6-2/4"
   const vec1 = math.matrix([1, 2, 3])
   const vec2 = math.matrix([1, 2, 1])
   const mat1 = math.matrix([[1, 2], [3, 4]])
   const mat2 = math.matrix([[5, 6], [1, 2]])
   const mat3 = math.matrix([[5, 6, 4], [3, 1, 2]])
   const mat4 = math.matrix([[5, 6], [1, 2], [4, 3]])
-  const [total, setTotal] = useState("0")
+  // const [total, setTotal] = useState("0")
   const [dotVec, setDotVec] = useState(0)
   const [dotMat, setDotMat] = useState(0)
   const [matMultiply, setMatMultiply] = useState(0)
-
-
-  const handleCalc = () => {
-    const total = math.compile(expression)
-    console.log(total, typeof total)
-    const result = total.evaluate()
-    console.log(result, typeof result)
-    setTotal(result)
-  }
 
 
   const calculateDotVec = () => {
@@ -46,6 +37,7 @@ function Panel() {
     console.log("---")
     setDotMat(result)
   }
+
   const calculateMatMul = () => {
     // const total = math.multiply(mat4, mat3)
     const total = math.multiply(mat3, mat4)
@@ -60,11 +52,6 @@ function Panel() {
   }
 
   return <div>
-    <h1>Calculator</h1>
-    {/* <button onClick={handleCalc}>Calculate vectors</button> */}
-    <button onClick={calculateDotVec}>Calculate vectors</button>
-    <h1>{dotVec}</h1>
-    {/* <button onClick={calculateDotMat}>Calculate Matrices</button> */}
     <button onClick={calculateMatMul}>multiply Matrices</button>
     <div>{matMultiply.toString()}</div>
     {/* <div>
